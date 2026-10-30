@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A little note for Lara 🌷</title>
+<meta name="description" content="A small, honest note for Lara.">
+<meta name="theme-color" content="#f7e4e1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#fbf3ea; --bg2:#f6dcd8; --card:#fffaf3; --ink:#4a2f33; --muted:#8a6a6c;
+  --rose:#c98a92; --rose-d:#a96871; --line:#ecd3cd; --shadow:rgba(150,90,95,.18);
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg1:#2a1b1e; --bg2:#3a2328; --card:#38252a; --ink:#f8e9e4; --muted:#d3b2b0;
+    --rose:#d99aa2; --rose-d:#e8aab1; --line:#5a3a40; --shadow:rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg1:#2a1b1e; --bg2:#3a2328; --card:#38252a; --ink:#f8e9e4; --muted:#d3b2b0;
+  --rose:#d99aa2; --rose-d:#e8aab1; --line:#5a3a40; --shadow:rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);line-height:1.6;
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petal{position:absolute;top:-8vh;opacity:0;animation:fall linear infinite;will-change:transform}
+@keyframes fall{
+  0%{transform:translate3d(0,0,0) rotate(0);opacity:0}
+  10%{opacity:.7}
+  90%{opacity:.5}
+  100%{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot));opacity:0}
+}
+main{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:28px 20px 72px}
+.stage{min-height:calc(100vh - 100px);display:flex;flex-direction:column;justify-content:center;gap:28px}
+.hero{text-align:center;padding:48px 8px 8px}
+.tag{
+  display:inline-block;font-size:.95rem;color:var(--rose-d);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 16px;box-shadow:0 4px 14px var(--shadow);
+}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0}
+h1{font-size:clamp(2.6rem,11vw,4rem);margin:28px 0 16px;letter-spacing:-.01em}
+.sub{font-size:1.05rem;color:var(--muted);max-width:30ch;margin:0 auto 32px}
+.btn{
+  font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;border-radius:999px;
+  padding:14px 26px;min-height:48px;border:1.5px solid var(--rose);transition:transform .2s,box-shadow .2s,background .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--rose);color:#fff;box-shadow:0 8px 22px var(--shadow)}
+.btn-primary:hover{background:var(--rose-d);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--rose-d)}
+.btn-ghost:hover{background:var(--card);transform:translateY(-2px);box-shadow:0 8px 22px var(--shadow)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:3px solid var(--rose-d);outline-offset:3px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:28px;
+  box-shadow:0 18px 50px var(--shadow);padding:34px 26px;position:relative;
+}
+.letter{padding:40px 28px 32px}
+.letter::before{
+  content:"";position:absolute;left:18px;top:0;bottom:0;width:1px;
+  background:repeating-linear-gradient(to bottom,var(--line) 0 6px,transparent 6px 12px);
+}
+.letter p{font-family:var(--serif);font-size:1.28rem;line-height:1.75;margin:0 0 1.1em;padding-left:10px}
+.sign{font-style:italic;color:var(--rose-d);text-align:right;margin:1.6em 0 0!important}
+.q{text-align:center}
+.q h2{font-size:clamp(1.9rem,7.5vw,2.5rem);margin-bottom:14px}
+.q .sub{margin-bottom:26px}
+.choices{display:flex;flex-direction:column;gap:12px}
+@media(min-width:520px){.choices{flex-direction:row;justify-content:center}}
+.answer{text-align:center}
+.answer h2{font-size:clamp(1.8rem,7vw,2.3rem);margin-bottom:16px}
+.answer p{font-size:1.08rem;color:var(--muted);margin:0 auto 24px;max-width:36ch}
+.again{display:block;margin:30px auto 0;background:none;border:none;color:var(--muted);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:4px;padding:12px}
+.again:focus-visible{outline:3px solid var(--rose-d);outline-offset:3px;border-radius:8px}
+.arena{position:relative;height:236px;margin:4px 0 0}
+.arena .yes{position:absolute;left:50%;top:10px;transform:translateX(-50%);white-space:nowrap;z-index:2;padding:16px 38px;font-size:1.12rem}
+.arena .yes:hover{transform:translateX(-50%) translateY(-2px)}
+.arena .yes:active{transform:translateX(-50%) scale(.97)}
+.arena .no{position:absolute;left:50%;top:146px;transform:translateX(-50%);white-space:nowrap;z-index:1;touch-action:manipulation;transition:left .5s cubic-bezier(.34,1.4,.5,1),top .5s cubic-bezier(.34,1.4,.5,1),background .2s,box-shadow .2s}
+.arena .no.placed{transform:none}
+.arena .no:hover{transform:none}
+.arena .no:not(.placed):hover{transform:translateX(-50%)}
+.tease{min-height:3.2em;margin:14px auto 0;font-size:.98rem;color:var(--rose-d);max-width:32ch}
+.count{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+.soft{display:block;margin:6px auto 0;background:none;border:none;color:var(--muted);font:inherit;font-size:.95rem;cursor:pointer;text-decoration:underline;text-underline-offset:4px;padding:12px 16px}
+.soft:focus-visible{outline:3px solid var(--rose-d);outline-offset:3px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){.arena .no{transition:none}}
+.status{min-height:1.6em;margin:22px auto 0!important;font-size:.95rem!important;color:var(--rose-d)!important;max-width:34ch}
+.status.ok{animation:rise .6s ease both}
+.status.err{color:#a8443f!important}
+.retry{font:inherit;font-weight:600;color:var(--rose-d);background:none;border:none;text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:10px 12px}
+.retry:focus-visible{outline:3px solid var(--rose-d);outline-offset:3px;border-radius:8px}
+.note{margin:0;text-align:center;font-size:.85rem;color:var(--muted)}
+[hidden]{display:none!important}
+.reveal{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+.pop{display:inline-block;animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+.line{opacity:0;animation:rise .8s ease forwards}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #petals{display:none}
+  .reveal,.pop,.line{animation:none;opacity:1;transform:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="petals" aria-hidden="true"></div>
+<main>
+  <section id="intro" class="stage">
+    <div class="hero reveal">
+      <span class="tag">A little note for Lara 🌷</span>
+      <h1>Lara, can I ask you something?</h1>
+      <p class="sub">Nothing dramatic, promise. Just a small thought I’ve been wanting to share with you. 🤍</p>
+      <button class="btn btn-primary" id="open" type="button">Open my little note ↗</button>
+    </div>
+  </section>
+
+  <section id="letterSec" hidden>
+    <article class="card letter" aria-label="A note for Lara">
+      <p>Lara, I know we’re still getting to know each other, and I don’t want to make things awkward or rush anything.</p>
+      <p>I just think you seem interesting, and I’d genuinely like the chance to know you beyond our little conversations.</p>
+      <p>Also, I know your nursing-student protocol says you have to be harsh on me 😭😂 but I’m hoping there’s a way to appeal.</p>
+      <p>No pressure, though. I just wanted to be honest instead of keeping the thought to myself.</p>
+      <p class="sign">— from someone trying to get off that protocol 🌷</p>
+    </article>
+  </section>
+
+  <section id="askSec" hidden style="margin-top:28px">
+    <div class="card q" id="askCard">
+      <h2>So, Lara… will you give me a chance to get to know you better?</h2>
+      <p class="sub">One conversation at a time. No pressure, and no need to give an answer you don’t mean.</p>
+      <div class="arena" id="arena">
+        <button class="btn btn-primary yes" id="yes" type="button">Yes 🌷</button>
+        <button class="btn btn-ghost no" id="no" type="button">No 🙈</button>
+      </div>
+      <p class="tease" id="tease" aria-live="polite"></p>
+      <button class="soft" id="notready" type="button">I’m not ready yet</button>
+      <p class="note">Your answer will be emailed to me 🤍</p>
+    </div>
+    <div class="card answer" id="answerCard" hidden aria-live="polite"></div>
+    <button class="again" id="again" type="button" hidden>Read it again</button>
+  </section>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // gentle falling petals and hearts
+  if(!reduce){
+    var box=$('petals'),glyphs=['🌸','🤍','🌷','♡','🌸'];
+    for(var i=0;i<14;i++){
+      var s=document.createElement('span');
+      s.className='petal';
+      s.textContent=glyphs[i%glyphs.length];
+      s.style.left=(Math.random()*100)+'vw';
+      s.style.fontSize=(12+Math.random()*14)+'px';
+      s.style.animationDuration=(14+Math.random()*14)+'s';
+      s.style.animationDelay=(-Math.random()*24)+'s';
+      s.style.setProperty('--dx',((Math.random()*80)-40)+'px');
+      s.style.setProperty('--rot',((Math.random()*360)-180)+'deg');
+      box.appendChild(s);
+    }
+  }
+
+  function show(el){
+    el.hidden=false;
+    el.classList.remove('reveal');
+    void el.offsetWidth;
+    el.classList.add('reveal');
+  }
+  function go(el){
+    el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  }
+
+  $('open').addEventListener('click',function(){
+    show($('letterSec'));
+    setTimeout(function(){show($('askSec'))},reduce?0:1400);
+    go($('letterSec'));
+    $('open').disabled=true;
+  });
+
+  // ---- Formspree: set your Form ID (the part after /f/ in your form URL) ----
+  var FORM_ID='xvkkbrdn';
+  var sent=false,sending=false;
+  function stamp(){
+    var d=new Date(),tz='';
+    try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+    return {
+      date:d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}),
+      time:d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+(tz?' ('+tz+')':''),
+      iso:d.toISOString()
+    };
+  }
+  function setStatus(html,cls){
+    var el=$('status');
+    if(!el)return;
+    el.className='status '+(cls||'');
+    el.innerHTML=html;
+  }
+  function submitResponse(label){
+    if(sent||sending)return;
+    if(!FORM_ID||FORM_ID.indexOf('PASTE')===0){
+      setStatus('Setup needed: your Formspree Form ID is missing, so this was not sent. <button class="retry" type="button" disabled>Try again</button>','err');
+      return;
+    }
+    sending=true;
+    setStatus('Sending my little notification…','');
+    var t=stamp(),ctrl=window.AbortController?new AbortController():null,timer=setTimeout(function(){if(ctrl)ctrl.abort();},12000);
+    fetch('https://formspree.io/f/'+encodeURIComponent(FORM_ID),{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({response:label,date:t.date,time:t.time,submitted_at:t.iso,_subject:'Lara responded: '+label}),
+      signal:ctrl?ctrl.signal:undefined
+    }).then(function(r){
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      sent=true;
+      setStatus('Your answer has been sent to me 🤍','ok');
+    }).catch(function(){
+      setStatus('That didn’t go through. <button class="retry" type="button" id="retry">Try again</button>','err');
+      var rb=$('retry');
+      if(rb)rb.addEventListener('click',function(){submitResponse(label);});
+    }).then(function(){clearTimeout(timer);sending=false;});
+  }
+
+  function answer(kind,label){
+    var c=$('answerCard');
+    if(kind==='yes'){
+      c.innerHTML='<h2><span class="pop">🥹🌷</span></h2><h2 class="line">Thank you, Lara.</h2><p class="line" style="animation-delay:.3s;margin-top:14px">I’m not asking you to decide everything today. I’d just love the chance to get to know you better, one conversation at a time. No pressure, just sincerity.</p>';
+    }else{
+      c.innerHTML='<h2><span class="pop">🤍</span></h2><h2 class="line">That’s completely okay, Lara.</h2><p class="line" style="animation-delay:.3s;margin-top:14px">Take your time. There’s no pressure at all — I’m glad you read my little note, and I’ll respect whatever feels right for you.</p>';
+    }
+    c.insertAdjacentHTML('beforeend','<p class="status" id="status" aria-live="polite"></p>');
+    $('askCard').hidden=true;
+    show(c);
+    submitResponse(label);
+    $('again').hidden=false;
+    go(c);
+  }
+  $('yes').addEventListener('click',function(){answer('yes','Yes 🌷')});
+  $('notready').addEventListener('click',function(){answer('think','I’m not ready yet')});
+
+  // playful dodging "No" button (stops dodging after MAX tries so she is never stuck)
+  var arena=$('arena'),no=$('no'),yesB=$('yes'),tease=$('tease');
+  var MAX=7,tries=0,placed=false,lastDodge=0;
+  var lines=['','Nice try 🙈','Oops, it moved again.','Lara, even the protocol is making this difficult 😂','Still chasing it? Brave.','It’s quicker than it looks.','The developer really wants you to consider this one 😭🌷','Okay, I’ll stop. It’s yours now 🙈'];
+  function place(x,y){no.style.left=x+'px';no.style.top=y+'px';}
+  function initNo(){
+    if(placed||!arena.offsetWidth)return;
+    var a=arena.getBoundingClientRect(),r=no.getBoundingClientRect();
+    no.style.transition='none';
+    no.classList.add('placed');
+    place(r.left-a.left,r.top-a.top);
+    void no.offsetWidth;
+    no.style.transition='';
+    placed=true;
+  }
+  function overlap(x,y,w,h,b,pad){
+    return x<b.right+pad&&x+w>b.left-pad&&y<b.bottom+pad&&y+h>b.top-pad;
+  }
+  function dodge(){
+    initNo();
+    if(!placed)return;
+    var a=arena.getBoundingClientRect(),w=no.offsetWidth,h=no.offsetHeight;
+    var y0=yesB.getBoundingClientRect(),yb={left:y0.left-a.left,right:y0.right-a.left,top:y0.top-a.top,bottom:y0.bottom-a.top};
+    var cx=no.offsetLeft,cy=no.offsetTop,best=null;
+    for(var i=0;i<40;i++){
+      var x=Math.random()*(a.width-w),y=Math.random()*(a.height-h);
+      if(overlap(x,y,w,h,yb,16))continue;
+      var d=Math.hypot(x-cx,y-cy);
+      if(d<90&&i<35)continue;
+      best={x:x,y:y};break;
+    }
+    if(!best)best={x:cx<a.width/2?a.width-w:0,y:a.height-h};
+    place(best.x,best.y);
+    tries++;
+    lastDodge=Date.now();
+    var t=lines[Math.min(tries,lines.length-1)];
+    tease.innerHTML=t+'<span class="count">Dodges: '+tries+'</span>';
+  }
+  function canDodge(){return tries<MAX;}
+  no.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&canDodge())dodge();});
+  no.addEventListener('pointerdown',function(e){
+    if(e.pointerType!=='mouse'&&canDodge()){e.preventDefault();dodge();}
+  });
+  no.addEventListener('click',function(){
+    if(Date.now()-lastDodge<450)return;
+    if(canDodge()){dodge();return;}
+    answer('think','No 🙈');
+  });
+  window.__resetDodge=function(){
+    tries=0;placed=false;lastDodge=0;tease.innerHTML='';
+    no.classList.remove('placed');no.style.left='';no.style.top='';no.style.transition='';
+  };
+
+  $('again').addEventListener('click',function(){
+    $('answerCard').hidden=true;
+    $('answerCard').innerHTML='';
+    $('askSec').hidden=true;
+    $('letterSec').hidden=true;
+    $('askCard').hidden=false;
+    $('again').hidden=true;
+    $('open').disabled=false;
+    if(window.__resetDodge)window.__resetDodge();
+    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+    show($('intro').firstElementChild);
+  });
+})();
+</script>
+</body>
+</html>
